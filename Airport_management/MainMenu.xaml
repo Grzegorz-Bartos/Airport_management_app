@@ -1,0 +1,39 @@
+﻿<Page x:Class="Airport_management.MainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport_management"
+      mc:Ignorable="d"
+      Width="300"
+      Title="Main Menu">
+
+    <Grid>
+        <StackPanel x:Name="SP_MainMenu" Orientation="Horizontal">
+
+            <StackPanel x:Name="SP_RadioButtons" Width="180">
+                <Label x:Name="LB_language" Style="{StaticResource Label2}" Height="30" HorizontalAlignment="Left" Margin="25 10 0 0" Foreground="White"
+                   Content="Select language:"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30 0 0 0">
+                    <RadioButton x:Name="RBT_PL" Style="{StaticResource RadioButton1}" Margin="0 4 0 0"
+                            Content="Polski" Click="RBT_Click"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="30 0 0 0">
+                    <RadioButton x:Name="RBT_EN" Style="{StaticResource RadioButton1}" Margin="0 8 0 0"
+                            Content="English" Click="RBT_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical">
+                <Button x:Name="BT_Login" Style="{StaticResource Button1}" Margin="0 15 0 0" VerticalAlignment="Bottom"
+                        Content="Log In" Click="BT_login_Click"/>
+                <Button x:Name="BT_Register" Style="{StaticResource Button1}" Margin="10"
+                        Content="Register" Click="BT_register_Click"/>
+                <Button x:Name="BT_Exit" Style="{StaticResource Button1}"
+                        Content="Exit" Click="BT_Exit_Click"/>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Page>

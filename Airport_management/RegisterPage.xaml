@@ -1,0 +1,45 @@
+﻿<Page x:Class="Airport_management.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport_management"
+      mc:Ignorable="d"
+      Title="RegisterPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="LB_createacc" Style="{StaticResource Label2}"
+               Content="Create a new account" Grid.Column="0" Grid.Row="0"/>
+
+        <Label x:Name="LB_username" Style="{StaticResource Label1}" Content="username: " Grid.Column="0" Grid.Row="1"/>
+        <TextBox x:Name="TB_username" Style="{StaticResource TextBox1}" Grid.Column="0" Grid.Row="2"/>
+
+        <Label x:Name="LB_password" Style="{StaticResource Label1}" Content="password: " Grid.Column="0" Grid.Row="3"/>
+        <PasswordBox x:Name="PB_password" Style="{StaticResource PasswordBox1}" Grid.Column="0" Grid.Row="4"/>
+
+        <Label x:Name="LB_confirm" Style="{StaticResource Label1}" Content="repeat password: " Grid.Column="0" Grid.Row="5"/>
+        <PasswordBox x:Name="PB_confirm" Style="{StaticResource PasswordBox1}" Grid.Column="0" Grid.Row="6"/>
+
+        <RadioButton x:Name="RBT_hideshow" Style="{StaticResource RadioButton1}" Grid.Column="0" Grid.Row="7"
+                     Content="Show password" Click="RBT_hideshow_Click"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="8">
+            <Button x:Name="BT_back" Style="{StaticResource Button1}" Margin="10"
+            Content="Back" Click="BT_back_Click"/>
+            <Button x:Name="BT_register" Style="{StaticResource Button1}" Margin="10"
+                        Content="Register" Click="BT_register_Click"/>
+        </StackPanel>
+    </Grid>
+</Page>

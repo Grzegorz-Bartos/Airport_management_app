@@ -1,0 +1,43 @@
+﻿<Page x:Class="Airport_management.PilotsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport_management"
+      mc:Ignorable="d"
+      Title="PilotsPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="LB_find" Style="{StaticResource Label2}" Grid.Column="0" Grid.Row="0"
+                Content="Find pilot"/>
+        <TextBox x:Name="TB_find" Style="{StaticResource TextBox1}" Grid.Column="0" Grid.Row="1"/>
+
+        <Button x:Name="BT_find" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="2"
+                Content="Find pilot" Click="BT_find_Click"/>
+
+        <Button x:Name="BT_add" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="3"
+                Content="Add pilot" Click="BT_add_Click"/>
+
+        <Button x:Name="BT_all" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="4"
+                Content="Show all" Click="BT_all_Click"/>
+
+        <Button x:Name="BT_back" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="5"
+                Content="Back" Click="BT_back_Click"/>
+
+        <Label x:Name="LB_result" Style="{StaticResource Label2}" Grid.Column="1" Grid.Row="0"
+            Content="Search results"/>
+    </Grid>
+</Page>
