@@ -5,11 +5,11 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style TargetType="Button" x:Key="Button1">
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="20"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="60"/>
             <Setter Property="Background" Value="#FF202020"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="Margin" Value="2"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -18,22 +18,22 @@
         </Style>
 
         <Style TargetType="Label" x:Key="Label1">
-            <Setter Property="Height" Value="25"/>
+            <Setter Property="Height" Value="50"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="24"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="2"/>
         </Style>
 
         <Style TargetType="Label" x:Key="Label2">
-            <Setter Property="Height" Value="30"/>
+            <Setter Property="Height" Value="60"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="FontSize" Value="30"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -41,11 +41,11 @@
         </Style>
 
         <Style TargetType="TextBox" x:Key="TextBox1">
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="15"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="#FF202020"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -54,11 +54,11 @@
         </Style>
 
         <Style TargetType="PasswordBox" x:Key="PasswordBox1">
-            <Setter Property="Width" Value="60"/>
-            <Setter Property="Height" Value="15"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="40"/>
             <Setter Property="Background" Value="#FF202020"/>
             <Setter Property="Foreground" Value="White"/>
-            <Setter Property="FontSize" Value="11"/>
+            <Setter Property="FontSize" Value="22"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -67,14 +67,24 @@
         </Style>
 
         <Style TargetType="RadioButton" x:Key="RadioButton1">
-            <Setter Property="Height" Value="20"/>
             <Setter Property="Background" Value="White"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="12"/>
             <Setter Property="BorderThickness" Value="3"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="DataGrid" x:Key="DataGrid1">
+            <Setter Property="Width" Value="340"/>
+            <Setter Property="Height" Value="300"/>
+        </Style>
+
+        <Style TargetType="ScrollViewer" x:Key="ScrollViewer1">
+            
         </Style>
         
     </Application.Resources>

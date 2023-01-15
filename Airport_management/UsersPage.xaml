@@ -4,40 +4,52 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Airport_management"
-      mc:Ignorable="d" 
-      Title="UsersPage">
+      mc:Ignorable="d"
+      Title="Users"
+      Loaded="BT_all_Click">
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="340"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
         </Grid.RowDefinitions>
-        
-            <Label x:Name="LB_find" Style="{StaticResource Label2}" Grid.Column="0" Grid.Row="0"
-                Content="Find user"/>
-        <TextBox x:Name="TB_find" Style="{StaticResource TextBox1}" Grid.Column="0" Grid.Row="1"/>
+
+        <Label x:Name="LB_find" Style="{StaticResource Label2}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                Content="Search"/>
+        <TextBox x:Name="TB_find" Style="{StaticResource TextBox1}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                 Width="250"/>
 
         <Button x:Name="BT_find" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="2"
-                Content="Find user" Click="BT_find_Click"/>
+                Content="Find" Click="BT_find_Click"/>
 
-        <Button x:Name="BT_add" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="3"
-                Content="Add user" Click="BT_add_Click"/>
+        <Button x:Name="BT_add" Style="{StaticResource Button1}" Grid.Column="1" Grid.Row="2"
+                Content="Add" Click="BT_add_Click"/>
 
-        <Button x:Name="BT_all" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="4"
+        <Button x:Name="BT_all" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="3"
                 Content="Show all" Click="BT_all_Click"/>
 
-        <Button x:Name="BT_back" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="5"
+        <Button x:Name="BT_update" Style="{StaticResource Button1}" Grid.Column="1" Grid.Row="3"
+        Content="Update" Click="BT_update_Click"/>
+
+        <Button x:Name="BT_delete" Style="{StaticResource Button1}" Grid.Column="1" Grid.Row="4"
+        Content="Delete" Click="BT_delete_Click"/>
+
+        <Button x:Name="BT_back" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="4"
                 Content="Back" Click="BT_back_Click"/>
 
-        <Label x:Name="LB_result" Style="{StaticResource Label2}" Grid.Column="1" Grid.Row="0"
-            Content="Search results"/>
+        <Label x:Name="LB_result" Style="{StaticResource Label2}" Grid.Column="2"
+            Content="Results"/>
+
+        
+        <DataGrid x:Name="DG_result" Style="{StaticResource DataGrid1}" Grid.Column="2" Grid.Row="1" Grid.RowSpan="5"
+                      CellEditEnding="DG_result_CellEditEnding" Background="#FF202020" BorderThickness="0"/>
     </Grid>
 </Page>

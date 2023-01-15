@@ -29,10 +29,24 @@ namespace Airport_management
         public LogInPage(int x)
         {
             InitializeComponent();
+            TB_username.Focus();
+            KeyDown += Window_KeyDown;
             language = x;
-            Language();
+            Translate();
         }
-        private void Language()
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                BT_login_Click(null, null);
+            }
+            else if (e.Key == Key.Escape)
+            {
+                BT_back_Click(null, null);
+            }
+        }
+
+        private void Translate()
         {
             if (language == 0)
             {
@@ -96,15 +110,6 @@ namespace Airport_management
             string login = string.Empty;
             string pass = string.Empty;
 
-            /*string hash = string.Empty;
-
-            using (SHA512 sha512 = SHA512.Create())
-            {
-                byte[] passwordbyte = Encoding.UTF8.GetBytes(password);
-                byte[] hashbyte = sha512.ComputeHash(passwordbyte);
-                hash = BitConverter.ToString(hashbyte).Replace("-", String.Empty);
-            }*/
-
             TB_username.Clear();
             PB_password.Clear();
 
@@ -133,9 +138,9 @@ namespace Airport_management
             {
                 if (pass == verify)
                 {
-                    MessageBox.Show(messagebox);
-                    MainApp mainApp = new MainApp();
+                    MainApp mainApp = new MainApp(language);
                     ((MainWindow)Application.Current.MainWindow).Content = mainApp;
+                    MessageBox.Show(messagebox);
                 }
                 else
                 {

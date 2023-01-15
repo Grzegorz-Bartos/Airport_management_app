@@ -16,17 +16,18 @@ using Npgsql;
 
 namespace Airport_management
 {
-    public partial class AddUserPage : Page
+    public partial class AddFlightPage : Page
     {
-        string messagebox = "User added";
+        string messagebox = "Flight added";
         string error = "Fill the data";
-        public int language;
-        public AddUserPage(int x)
+        int language;
+        public AddFlightPage(int x)
         {
             InitializeComponent();
-            TB_username.Focus();
+            TB_origin.Focus();
             KeyDown += Window_KeyDown;
             language = x;
+            DP_date.SelectedDate = DateTime.Today;
             Translate();
         }
 
@@ -35,7 +36,7 @@ namespace Airport_management
             if (e.Key == Key.Enter)
             {
                 BT_add_Click(null, null);
-            } 
+            }
             else if (e.Key == Key.Escape)
             {
                 BT_back_Click(null, null);
@@ -44,37 +45,33 @@ namespace Airport_management
 
         private void Translate()
         {
-            if(language == 0)
+            if (language == 0)
             {
-                LB_main.Content = "Dodaj użytkownika";
-                messagebox = "Dodano użytkownika";
+                LB_main.Content = "Dodaj lot";
+                messagebox = "Dodano lot";
                 error = "Uzupełnij dane";
                 BT_add.Content = "Dodaj";
                 BT_back.Content = "Cofnij";
-                LB_username.Content = "Nazwa użytkownika";
-                LB_password.Content = "Hasło";
+                LB_origin.Content = "Skąd";
+                LB_destination.Content = "Dokąd";
+                LB_date.Content = "Data";
             }
             else
             {
-                LB_main.Content = "Add a new user";
-                messagebox = "User added";
+                LB_main.Content = "Add a new flight";
+                messagebox = "Flight added";
                 error = "Fill the data";
                 BT_add.Content = "Add";
                 BT_back.Content = "Back";
-                LB_username.Content = "Username";
-                LB_password.Content = "Password";
+                LB_origin.Content = "Origin";
+                LB_destination.Content = "Destination";
+                LB_date.Content = "Date";
             }
-        }
-
-        private void BT_back_Click(object sender, RoutedEventArgs e)
-        {
-            UsersPage usersPage = new UsersPage(language);
-            ((MainWindow)Application.Current.MainWindow).Content = usersPage;
         }
 
         private void BT_add_Click(object sender, RoutedEventArgs e)
         {
-            if (TB_username.Text != String.Empty && PB_password.Password != String.Empty)
+            if (TB_origin.Text != String.Empty && TB_destination.Text != String.Empty && DP_date.Text != String.Empty)
             {
                 var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
 
@@ -84,11 +81,12 @@ namespace Airport_management
                 using var cmd = new NpgsqlCommand();
                 cmd.Connection = con;
 
-                string username = TB_username.Text;
-                string password = PB_password.Password;
-                TB_username.Clear();
-                PB_password.Clear();
-                string sql = string.Format("INSERT INTO users(username,password) VALUES('{0}',SHA512('{1}'))", username, password);
+                string origin = TB_origin.Text;
+                string destination = TB_destination.Text;
+                string date = DP_date.Text;
+                TB_origin.Clear();
+                TB_destination.Clear();
+                string sql = string.Format("INSERT INTO flight(origin,destination,date) VALUES('{0}','{1}','{2}')", origin, destination, date);
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
                 MessageBox.Show(messagebox);
@@ -97,7 +95,11 @@ namespace Airport_management
             {
                 MessageBox.Show(error);
             }
-            
+        }
+        private void BT_back_Click(object sender, RoutedEventArgs e)
+        {
+            FlightsPage flightsPage = new FlightsPage(language);
+            ((MainWindow)Application.Current.MainWindow).Content = flightsPage;
         }
     }
 }

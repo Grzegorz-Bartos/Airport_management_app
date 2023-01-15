@@ -1,0 +1,77 @@
+﻿<Page x:Class="Airport_management.AddFlightPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Airport_management"
+      mc:Ignorable="d" 
+      Height="360" Width="600"
+      Title="AddFlightPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Label x:Name="LB_main" Style="{StaticResource Label2}" Grid.ColumnSpan="2" Grid.Row="0"
+               Content="Add a new flight"/>
+
+        <Label x:Name="LB_origin" Style="{StaticResource Label1}" Grid.Column="0" Grid.Row="1"
+                    Content="Origin"/>
+        <TextBox x:Name="TB_origin" Style="{StaticResource TextBox1}" Grid.Column="1" Grid.Row="1"/>
+
+        <Label x:Name="LB_destination" Style="{StaticResource Label1}" Grid.Column="0" Grid.Row="2" 
+                    Content="Destination"/>
+        <TextBox x:Name="TB_destination" Style="{StaticResource TextBox1}" Grid.Column="1" Grid.Row="2"/>
+
+        <Label x:Name="LB_date" Style="{StaticResource Label1}" Grid.Column="0" Grid.Row="3"
+                    Content="Date"/>
+        <DatePicker x:Name="DP_date" Grid.Column="1" Grid.Row="3"
+                    Width="120" Height="40">
+            <DatePicker.Style>
+                <Style TargetType="{x:Type DatePicker}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DatePicker}">
+                                <Border BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                                    <Grid>
+                                        <TextBox x:Name="PART_TextBox"
+                                     Text="{Binding Path=SelectedDate,
+                                                   RelativeSource={RelativeSource TemplatedParent},
+                                                   StringFormat={}{0:d}}"
+                                     Width="120"
+                                     Height="40"
+                                     BorderThickness="0"
+                                     Background="#FF202020"
+                                     Foreground="White"
+                                     FontWeight="Bold"
+                                     FontSize="22"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     HorizontalContentAlignment="Center"/>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DatePicker.Style>
+        </DatePicker>
+
+        <Button x:Name="BT_add" Style="{StaticResource Button1}" Grid.Column="1" Grid.Row="4"
+                Content="Add" Click="BT_add_Click"/>
+        <Button x:Name="BT_back" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="4"
+                    Content="Back" Click="BT_back_Click"/>
+    </Grid>
+</Page>

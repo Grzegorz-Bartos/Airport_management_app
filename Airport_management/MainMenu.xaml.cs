@@ -22,9 +22,9 @@ namespace Airport_management
         {
             InitializeComponent();
             this.language = x;
-            Language();
+            Translate();
         }
-        private void Language()
+        private void Translate()
         {
             if (language == 0)
             {
@@ -54,7 +54,7 @@ namespace Airport_management
             {                RBT_PL.IsChecked = false;
                 language = 1;
             }
-            Language();
+            Translate();
         }
 
         private void BT_register_Click(object sender, RoutedEventArgs e)

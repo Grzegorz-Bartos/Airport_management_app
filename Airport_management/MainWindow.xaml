@@ -6,12 +6,9 @@
         xmlns:local="clr-namespace:Airport_management"
         mc:Ignorable="d"
         Title="Airport Database" 
-        Height="Auto" Width="Auto"
+        Height="360" Width="600"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         Background="#FF202020"
         WindowStartupLocation="CenterScreen">
-    <Grid>
-        
-    </Grid>
 </Window>

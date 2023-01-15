@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Airport_management"
       mc:Ignorable="d"
+      Height="360" Width="600"
       Title="AddUserPage">
 
     <Grid>
@@ -18,18 +19,19 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-
-                <Label x:Name="LB_username" Style="{StaticResource Label1}" Grid.Column="0" Grid.Row="0"
-                    Content="username: "/>
-                <TextBox x:Name="TB_username" Style="{StaticResource TextBox1}" Grid.Column="1" Grid.Row="0"/>
+        <Label x:Name="LB_main" Style="{StaticResource Label2}" Grid.ColumnSpan="2" Grid.Row="0"
+               Content="Add new user"/>
+        <Label x:Name="LB_username" Style="{StaticResource Label1}" Grid.Column="0" Grid.Row="1"
+                    Content="Username"/>
+                <TextBox x:Name="TB_username" Style="{StaticResource TextBox1}" Grid.Column="1" Grid.Row="1"/>
             
-                <Label x:Name="LB_password" Style="{StaticResource Label1}" Grid.Column="0" Grid.Row="1" 
-                    Content="password: "/>
-                <TextBox x:Name="TB_password" Style="{StaticResource TextBox1}" Grid.Column="1" Grid.Row="1"/>
+                <Label x:Name="LB_password" Style="{StaticResource Label1}" Grid.Column="0" Grid.Row="2" 
+                    Content="Password"/>
+                <PasswordBox x:Name="PB_password" Style="{StaticResource PasswordBox1}" Grid.Column="1" Grid.Row="2"/>
             
-            <Button x:Name="BT_add" Style="{StaticResource Button1}" Grid.Column="1" Grid.Row="2"
+            <Button x:Name="BT_add" Style="{StaticResource Button1}" Grid.Column="1" Grid.Row="3"
                 Content="Add" Click="BT_add_Click"/>
-            <Button x:Name="BT_back" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="2"
+            <Button x:Name="BT_back" Style="{StaticResource Button1}" Grid.Column="0" Grid.Row="3"
                     Content="Back" Click="BT_back_Click"/>
     </Grid>
 </Page>

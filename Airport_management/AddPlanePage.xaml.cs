@@ -16,12 +16,12 @@ using Npgsql;
 
 namespace Airport_management
 {
-    public partial class AddPilotPage : Page
+    public partial class AddPlanePage : Page
     {
-        string messagebox = "Pilot added";
+        string messagebox = "Plane added";
         string error = "Fill the data";
         int language;
-        public AddPilotPage(int x)
+        public AddPlanePage(int x)
         {
             InitializeComponent();
             TB_name.Focus();
@@ -29,7 +29,6 @@ namespace Airport_management
             language = x;
             Translate();
         }
-
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -46,25 +45,25 @@ namespace Airport_management
         {
             if (language == 0)
             {
-                LB_main.Content = "Dodaj pilota";
-                messagebox = "Dodano pilota";
+                LB_main.Content = "Dodaj samolot";
+                messagebox = "Dodano samolot";
                 error = "Uzupełnij dane";
                 BT_add.Content = "Dodaj";
                 BT_back.Content = "Cofnij";
-                LB_name.Content = "Imię";
-                LB_surname.Content = "Nazwisko";
-                LB_age.Content = "Wiek";
+                LB_name.Content = "Nazwa";
+                LB_model.Content = "Model";
+                LB_status.Content = "Status";
             }
             else
             {
-                LB_main.Content = "Add a new pilot";
-                messagebox = "Pilot added";
+                LB_main.Content = "Add a new plane";
+                messagebox = "Plane added";
                 error = "Fill the data";
                 BT_add.Content = "Add";
                 BT_back.Content = "Back";
                 LB_name.Content = "Name";
-                LB_surname.Content = "Surname";
-                LB_age.Content = "Age";
+                LB_model.Content = "Model";
+                LB_status.Content = "Status";
             }
         }
 
@@ -79,12 +78,14 @@ namespace Airport_management
             cmd.Connection = con;
 
             string name = TB_name.Text;
-            string surname = TB_surname.Text;
-            string age = TB_age.Text;
+            string model = TB_model.Text;
+            string status = TB_status.Text;
+
             TB_name.Clear();
-            TB_surname.Clear();
-            TB_age.Clear();
-            string sql = string.Format("INSERT INTO pilot(name,surname,age) VALUES('{0}','{1}',{2})", name, surname,age);
+            TB_model.Clear();
+            TB_status.Clear();
+
+            string sql = string.Format("INSERT INTO plane(name,model,status) VALUES('{0}','{1}','{2}')", name, model, status);
             cmd.CommandText = sql;
             cmd.ExecuteNonQuery();
             MessageBox.Show(messagebox);
@@ -92,8 +93,8 @@ namespace Airport_management
 
         private void BT_back_Click(object sender, RoutedEventArgs e)
         {
-            PilotsPage pilotsPage = new PilotsPage(language);
-            ((MainWindow)Application.Current.MainWindow).Content = pilotsPage;
+            PlanesPage planesPage = new PlanesPage(language);
+            ((MainWindow)Application.Current.MainWindow).Content = planesPage;
         }
     }
 }

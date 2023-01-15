@@ -20,14 +20,15 @@ namespace Airport_management
     {
         public int language;
         string messagebox = "Registation successful";
-        string msgboxerror = "Passwords differ";
+        string error = "Passwords differ";
         public RegisterPage(int x)
         {
             InitializeComponent();
+            TB_username.Focus();
             language = x;
-            Language();
+            Translate();
         }
-        private void Language()
+        private void Translate()
         {
             if (language == 0)
             {
@@ -35,10 +36,10 @@ namespace Airport_management
                 BT_register.Content = "Zarejestruj";
                 LB_username.Content = "Nazwa użytkownika";
                 LB_password.Content = "Hasło";
-                LB_confirm.Content = "Powtórz hasło";
+                LB_confirm.Content = "Potwierdź hasło";
                 LB_createacc.Content = "Utwórz nowe konto";
                 messagebox = "Rejestracja przebiegła pomyślnie";
-                msgboxerror = "Hasła nie są jednakowe";
+                error = "Hasła nie są jednakowe";
             }
             else
             {
@@ -49,7 +50,7 @@ namespace Airport_management
                 LB_confirm.Content = "Confirm password";
                 LB_createacc.Content = "Create a new account";
                 messagebox = "Registation successful";
-                msgboxerror = "Passwords differ";
+                error = "Passwords differ";
             }
         }
         private void BT_back_Click(object sender, RoutedEventArgs e)
@@ -57,7 +58,6 @@ namespace Airport_management
             MainMenu mainMenu = new MainMenu(language);
             ((MainWindow)Application.Current.MainWindow).Content = mainMenu;
         }
-
         private void BT_register_Click(object sender, RoutedEventArgs e)
         {
             var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
@@ -68,37 +68,31 @@ namespace Airport_management
             using var cmd = new NpgsqlCommand();
             cmd.Connection = con;
 
-            /*bool conditions = false;
-            if (TB_username.Text != "" && TB_username.Text != " " 
-                && TB_password.Text != "" && TB_password.Text != " ")
-            {
-                conditions = true;
-            }*/
-
-            if (PB_password.Password.ToString() == PB_confirm.Password.ToString()/* && conditions*/)
+            if (PB_password.Password.ToString() == PB_confirm.Password.ToString())
             {
                 string username = TB_username.Text;
                 string password = PB_password.Password.ToString();
+
                 TB_username.Clear();
                 PB_password.Clear();
                 PB_confirm.Clear();
-                /*string ctext = "INSERT INTO users(username,password) VALUES('" + username + "',SHA512('" + password + "'))";*/
+
                 string sql = string.Format("INSERT INTO users(username,password) VALUES('{0}',SHA512('{1}'))", username, password);
                 cmd.CommandText = sql;
                 cmd.ExecuteNonQuery();
+
                 MessageBox.Show(messagebox);
                 MainMenu mainMenu = new MainMenu(language);
                 ((MainWindow)Application.Current.MainWindow).Content = mainMenu;
             }
             else
             {
-                MessageBox.Show(msgboxerror);
+                MessageBox.Show(error);
             }
         }
-
         private void RBT_hideshow_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }
