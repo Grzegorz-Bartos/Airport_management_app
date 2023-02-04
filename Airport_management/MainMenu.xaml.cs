@@ -18,10 +18,12 @@ namespace Airport_management
     public partial class MainMenu : Page
     {
         int language { get; set; }
-        public MainMenu(int x)
+        string cs { get; set; }
+        public MainMenu(int x, string y)
         {
             InitializeComponent();
             this.language = x;
+            this.cs = y;
             Translate();
         }
         private void Translate()
@@ -59,13 +61,13 @@ namespace Airport_management
 
         private void BT_register_Click(object sender, RoutedEventArgs e)
         {
-            RegisterPage registerPage = new RegisterPage(language);
+            RegisterPage registerPage = new RegisterPage(language,cs);
             ((MainWindow)Application.Current.MainWindow).Content = registerPage;
         }
 
         private void BT_login_Click(object sender, RoutedEventArgs e)
         {
-            LogInPage loginPage = new LogInPage(language);
+            LogInPage loginPage = new LogInPage(language,cs);
             ((MainWindow)Application.Current.MainWindow).Content = loginPage;
         }
 

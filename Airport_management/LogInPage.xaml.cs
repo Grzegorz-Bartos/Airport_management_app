@@ -19,19 +19,21 @@ namespace Airport_management
 {
     public partial class LogInPage : Page
     {
-        public int language;
+        int language { get; set; }
+        string cs { get; set; }
         string messagebox = "Logged in successfuly";
         string loginerror = "Wrong login";
         string passerror = "Wrong password";
         string username;
         string password;
         string verify;
-        public LogInPage(int x)
+        public LogInPage(int x, string y)
         {
             InitializeComponent();
             TB_username.Focus();
             KeyDown += Window_KeyDown;
-            language = x;
+            this.language = x;
+            this.cs = y;
             Translate();
         }
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -73,14 +75,12 @@ namespace Airport_management
         }
         private void BT_back_Click(object sender, RoutedEventArgs e)
         {
-            MainMenu mainMenu = new MainMenu(language);
+            MainMenu mainMenu = new MainMenu(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = mainMenu;
         }
 
         private void verification(string username, string password)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
-
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -113,8 +113,6 @@ namespace Airport_management
             TB_username.Clear();
             PB_password.Clear();
 
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
-
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -138,7 +136,7 @@ namespace Airport_management
             {
                 if (pass == verify)
                 {
-                    MainApp mainApp = new MainApp(language);
+                    MainApp mainApp = new MainApp(language, cs);
                     ((MainWindow)Application.Current.MainWindow).Content = mainApp;
                     MessageBox.Show(messagebox);
                 }

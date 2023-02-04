@@ -20,13 +20,15 @@ namespace Airport_management
     {
         string messagebox = "User added";
         string error = "Fill the data";
-        public int language;
-        public AddUserPage(int x)
+        int language { get; set; }
+        string cs { get; set; }
+        public AddUserPage(int x, string y)
         {
             InitializeComponent();
             TB_username.Focus();
             KeyDown += Window_KeyDown;
-            language = x;
+            this.language = x;
+            this.cs = y;
             Translate();
         }
 
@@ -68,7 +70,7 @@ namespace Airport_management
 
         private void BT_back_Click(object sender, RoutedEventArgs e)
         {
-            UsersPage usersPage = new UsersPage(language);
+            UsersPage usersPage = new UsersPage(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = usersPage;
         }
 
@@ -76,7 +78,6 @@ namespace Airport_management
         {
             if (TB_username.Text != String.Empty && PB_password.Password != String.Empty)
             {
-                var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
 
                 using var con = new NpgsqlConnection(cs);
                 con.Open();

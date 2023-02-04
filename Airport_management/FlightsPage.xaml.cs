@@ -18,19 +18,18 @@ using System.Data;
 
 namespace Airport_management
 {
-    /// <summary>
-    /// Interaction logic for FlightsPage.xaml
-    /// </summary>
     public partial class FlightsPage : Page
     {
         string error;
-        int language;
-        public FlightsPage(int x)
+        int language { get; set; }
+        string cs { get; set; }
+        public FlightsPage(int x, string y)
         {
             InitializeComponent();
             TB_find.Focus();
             KeyDown += Window_KeyDown;
-            language = x;
+            this.language = x;
+            this.cs = y;
             Translate();
             BT_all_Click(null, null);
         }
@@ -76,7 +75,6 @@ namespace Airport_management
 
         private void BT_find_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -102,7 +100,6 @@ namespace Airport_management
 
         private void BT_all_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -122,7 +119,6 @@ namespace Airport_management
 
         private void BT_update_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -136,11 +132,11 @@ namespace Airport_management
 
                     using (var cmd = con.CreateCommand())
                     {
-                        cmd.CommandText = "UPDATE flight SET origin = @origin WHERE id = @id";
+                        cmd.CommandText = "UPDATE flight SET origin = @origin, destination = @destination, date = @date WHERE id = @id";
                         cmd.Parameters.AddWithValue("@id", id);
-                        cmd.Parameters.AddWithValue("@username", origin);
-                        cmd.Parameters.AddWithValue("@username", destination);
-                        cmd.Parameters.AddWithValue("@username", date);
+                        cmd.Parameters.AddWithValue("@origin", origin);
+                        cmd.Parameters.AddWithValue("@destination", destination);
+                        cmd.Parameters.AddWithValue("@date", date);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -174,7 +170,6 @@ namespace Airport_management
                 //ID of selected item
                 int id = (int)row["id"];
 
-                var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
                 using var con = new NpgsqlConnection(cs);
                 con.Open();
 
@@ -201,13 +196,13 @@ namespace Airport_management
 
             private void BT_add_Click(object sender, RoutedEventArgs e)
             {
-                AddFlightPage addFlightPage = new AddFlightPage(language);
+                AddFlightPage addFlightPage = new AddFlightPage(language, cs);
                 ((MainWindow)Application.Current.MainWindow).Content = addFlightPage;
             }
 
             private void BT_back_Click(object sender, RoutedEventArgs e)
             {
-                MainApp mainApp = new MainApp(language);
+                MainApp mainApp = new MainApp(language, cs);
                 ((MainWindow)Application.Current.MainWindow).Content = mainApp;
             }
 

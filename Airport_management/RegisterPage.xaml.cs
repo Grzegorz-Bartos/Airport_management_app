@@ -18,14 +18,16 @@ namespace Airport_management
 {
     public partial class RegisterPage : Page
     {
-        public int language;
+        int language { get; set; }
+        string cs { get; set; }
         string messagebox = "Registation successful";
         string error = "Passwords differ";
-        public RegisterPage(int x)
+        public RegisterPage(int x, string y)
         {
             InitializeComponent();
             TB_username.Focus();
-            language = x;
+            this.language = x;
+            this.cs = y;
             Translate();
         }
         private void Translate()
@@ -55,13 +57,11 @@ namespace Airport_management
         }
         private void BT_back_Click(object sender, RoutedEventArgs e)
         {
-            MainMenu mainMenu = new MainMenu(language);
+            MainMenu mainMenu = new MainMenu(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = mainMenu;
         }
         private void BT_register_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
-
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -82,7 +82,7 @@ namespace Airport_management
                 cmd.ExecuteNonQuery();
 
                 MessageBox.Show(messagebox);
-                MainMenu mainMenu = new MainMenu(language);
+                MainMenu mainMenu = new MainMenu(language, cs);
                 ((MainWindow)Application.Current.MainWindow).Content = mainMenu;
             }
             else

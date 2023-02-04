@@ -20,13 +20,15 @@ namespace Airport_management
     public partial class PlanesPage : Page
     {
         string error;
-        int language;
-        public PlanesPage(int x)
+        int language { get; set; }
+        string cs { get; set; }
+        public PlanesPage(int x, string y)
         {
             InitializeComponent();
             TB_find.Focus();
             KeyDown += Window_KeyDown;
-            language = x;
+            this.language = x;
+            this.cs= y;
             BT_all_Click(null, null);
             Translate();
         }
@@ -72,18 +74,17 @@ namespace Airport_management
 
         private void BT_add_Click(object sender, RoutedEventArgs e)
         {
-            AddPlanePage addPlanePage = new AddPlanePage(language);
+            AddPlanePage addPlanePage = new AddPlanePage(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = addPlanePage;
         }
         private void BT_back_Click(object sender, RoutedEventArgs e)
         {
-            MainApp mainApp = new MainApp(language);
+            MainApp mainApp = new MainApp(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = mainApp;
         }
 
         private void BT_find_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -109,7 +110,6 @@ namespace Airport_management
 
         private void BT_all_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -129,7 +129,6 @@ namespace Airport_management
 
         private void BT_update_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -138,11 +137,11 @@ namespace Airport_management
                 int id = (int)row.Row.ItemArray[0];
                 string name = (string)row.Row.ItemArray[1];
                 string model = (string)row.Row.ItemArray[2];
-                int status = (int)row.Row.ItemArray[3];
+                string status = (string)row.Row.ItemArray[3];
 
                 using (var cmd = con.CreateCommand())
                 {
-                    cmd.CommandText = "UPDATE pilot SET id = @id, name = @name, model = @model, status = @status WHERE id = @id";
+                    cmd.CommandText = "UPDATE plane SET name = @name, model = @model, status = @status WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@model", model);
@@ -153,7 +152,7 @@ namespace Airport_management
 
             using (NpgsqlCommand cmd = con.CreateCommand())
             {
-                cmd.CommandText = "SELECT id,name,surname,age FROM pilot";
+                cmd.CommandText = "SELECT * FROM plane";
 
                 NpgsqlDataAdapter adapter = new NpgsqlDataAdapter(cmd);
 
@@ -175,8 +174,6 @@ namespace Airport_management
             }
 
             int id = (int)row["id"];
-
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 

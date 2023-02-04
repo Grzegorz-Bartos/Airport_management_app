@@ -23,8 +23,8 @@ namespace Airport_management
         {
             InitializeComponent();
             this.language = 1;
-            MainMenu mainMenu = new MainMenu(language);
-            ((MainWindow)Application.Current.MainWindow).Content = mainMenu;
+            DatabaseAccess dbaccess = new DatabaseAccess(language);
+            ((MainWindow)Application.Current.MainWindow).Content = dbaccess;
 
             /*var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
 

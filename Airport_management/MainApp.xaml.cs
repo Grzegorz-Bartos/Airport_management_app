@@ -17,11 +17,13 @@ namespace Airport_management
 {
     public partial class MainApp : Page
     {
-        public int language;
-        public MainApp(int x)
+        int language { get; set; }
+        string cs { get; set; }
+        public MainApp(int x, string y)
         {
             InitializeComponent();
-            language = x;
+            this.language = x;
+            this.cs = y;
             Translate();
         }
 
@@ -49,31 +51,31 @@ namespace Airport_management
 
         private void BT_planes_Click(object sender, RoutedEventArgs e)
         {
-            PlanesPage planesPage = new PlanesPage(language);
+            PlanesPage planesPage = new PlanesPage(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = planesPage;
         }
 
         private void BT_back_Click(object sender, RoutedEventArgs e)
         {
-            MainMenu mainMenu = new MainMenu(language);
+            MainMenu mainMenu = new MainMenu(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = mainMenu;
         }
 
         private void BT_users_Click(object sender, RoutedEventArgs e)
         {
-            UsersPage usersPage = new UsersPage(language);
+            UsersPage usersPage = new UsersPage(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = usersPage;
         }
 
         private void BT_pilots_Click(object sender, RoutedEventArgs e)
         {
-            PilotsPage pilotsPage = new PilotsPage(language);
+            PilotsPage pilotsPage = new PilotsPage(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = pilotsPage;
         }
 
         private void BT_Flights_Click(object sender, RoutedEventArgs e)
         {
-            FlightsPage flightsPage = new FlightsPage(language);
+            FlightsPage flightsPage = new FlightsPage(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = flightsPage;
         }
     }

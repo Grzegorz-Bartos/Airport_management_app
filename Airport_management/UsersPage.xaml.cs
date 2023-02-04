@@ -20,14 +20,16 @@ namespace Airport_management
 {
     public partial class UsersPage : Page
     {
-        public int language;
+        int language { get; set; }
+        string cs { get; set; }
         string error;
-        public UsersPage(int x)
+        public UsersPage(int x, string y)
         {
             InitializeComponent();
             TB_find.Focus();
             KeyDown += Window_KeyDown;
-            language = x;
+            this.language = x;
+            this.cs = y;
             Translate();
         }
 
@@ -73,18 +75,17 @@ namespace Airport_management
 
         private void BT_add_Click(object sender, RoutedEventArgs e)
         {
-            AddUserPage addUserPage = new AddUserPage(language);
+            AddUserPage addUserPage = new AddUserPage(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = addUserPage;
         }
         private void BT_back_Click(object sender, RoutedEventArgs e)
         {
-            MainApp mainApp = new MainApp(language);
+            MainApp mainApp = new MainApp(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = mainApp;
         }
 
         private void BT_find_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -110,7 +111,6 @@ namespace Airport_management
 
         private void BT_all_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -130,7 +130,6 @@ namespace Airport_management
 
         private void BT_update_Click(object sender, RoutedEventArgs e)
         {
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 
@@ -178,7 +177,6 @@ namespace Airport_management
             //ID of selected item
             int id = (int)row["id"];
 
-            var cs = "Host=localhost;Username=postgres;Password=Lemonade999;Database=Airport_database";
             using var con = new NpgsqlConnection(cs);
             con.Open();
 

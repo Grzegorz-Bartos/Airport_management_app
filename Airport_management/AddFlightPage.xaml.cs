@@ -20,13 +20,15 @@ namespace Airport_management
     {
         string messagebox = "Flight added";
         string error = "Fill the data";
-        int language;
-        public AddFlightPage(int x)
+        int language { get; set; }
+        string cs { get; set; }
+        public AddFlightPage(int x, string y)
         {
             InitializeComponent();
             TB_origin.Focus();
             KeyDown += Window_KeyDown;
-            language = x;
+            this.language = x;
+            this.cs = y;
             DP_date.SelectedDate = DateTime.Today;
             Translate();
         }
@@ -98,7 +100,7 @@ namespace Airport_management
         }
         private void BT_back_Click(object sender, RoutedEventArgs e)
         {
-            FlightsPage flightsPage = new FlightsPage(language);
+            FlightsPage flightsPage = new FlightsPage(language, cs);
             ((MainWindow)Application.Current.MainWindow).Content = flightsPage;
         }
     }

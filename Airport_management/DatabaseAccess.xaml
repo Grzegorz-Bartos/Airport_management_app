@@ -5,13 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Airport_management"
       mc:Ignorable="d"
+      Height="360" Width="600"
       Title="DatabaseAccess">
 
     <Grid>
         <StackPanel>
-            <Label x:Name="LB_database" Content="Enter database password: " Foreground="White"/>
-            <PasswordBox x:Name="PB_database"/>
-            <Button x:Name="BT_confirm" Content="Confirm"/>
+            <Label x:Name="LB_database" Content="Enter database password: " Style="{DynamicResource Label1}" Margin="0 60 0 0"/>
+            <PasswordBox x:Name="PB_database" Style="{DynamicResource PasswordBox1}" Width="260"/>
+            <Button x:Name="BT_confirm" Content="Confirm" Click="Confirm" Style="{DynamicResource Button1}" Width="260"/>
         </StackPanel>
     </Grid>
 </Page>
